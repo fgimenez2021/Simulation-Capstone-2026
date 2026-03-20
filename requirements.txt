@@ -1,0 +1,29 @@
+# Core computation + data
+numpy>=1.26
+pandas>=2.1
+
+# Config loading
+PyYAML>=6.0.1
+
+# Distributions / lightweight stats (optional but useful)
+scipy>=1.11
+
+# Discrete-event simulation (stress queues)
+simpy>=4.1
+
+# Plotting (thesis figures)
+matplotlib>=3.8
+seaborn>=0.13
+
+# Interactive dashboard
+streamlit>=1.38
+plotly>=5.22
+
+# Progress bars
+tqdm>=4.66
+
+# Testing
+pytest>=8.0
+
+# Optional (recommended) for stricter config schemas
+pydantic>=2.6

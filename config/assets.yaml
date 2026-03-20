@@ -1,0 +1,25 @@
+
+assets:
+  - id: TBILL_MMF
+    label: "T-bill / Money Market Fund exposure"
+    liquidity_class: "liquid"
+
+    redemption:
+      window_type: "daily"
+      notice_days: 0
+      settlement_days_to_cash: 1
+
+    eligibility:
+      requires_qualified_investor: false
+
+  - id: PRIVATE_CREDIT
+    label: "Private credit exposure"
+    liquidity_class: "illiquid"
+
+    redemption:
+      window_type: "quarterly"
+      notice_days: 30
+      settlement_days_to_cash: 7
+
+    eligibility:
+      requires_qualified_investor: true

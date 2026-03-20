@@ -1,0 +1,12 @@
+Stage order,Stage ID,Thesis label,Category,Operational meaning
+1,ONBOARDING,Onboarding (account setup / initial intake),onboarding,"Initial account setup, entity intake, and platform registration."
+2,KYC_REVIEW,KYC / Compliance review,compliance,"Identity, AML/KYB, and compliance review before access is granted."
+3,ELIGIBILITY_GATE,Eligibility / allowlist checks,compliance,"Suitability, allowlist, and investor-qualification checks."
+4,ORDER_PLACEMENT,Order placement,execution,Investor submits the order or investment instruction.
+5,EXECUTION,Execution,execution,Trade or subscription is executed on the chosen route.
+6,CLEARING_SETTLEMENT,Clearing and settlement,settlement,Cash and position settlement completes on the route.
+7,CUSTODY_RECORDING,Custody / recording,custody,The resulting position is booked and reflected in custody records.
+8,SERVICING_REPORTING,Servicing and reporting,servicing,"Initial servicing, reporting, or attestation setup is completed."
+9,TRANSFERABILITY,Transferability / secondary transfer attempt,transfer,A secondary transfer attempt is processed under route rules.
+10,EXIT_INITIATION,Exit initiation (sell or redeem request),exit,The investor starts the exit or redemption request.
+11,REDEMPTION_PROCESSING,Redemption processing (ops / settlement-to-cash),exit,Redemption operations and settlement-to-cash are completed.

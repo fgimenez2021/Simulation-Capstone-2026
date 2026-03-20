@@ -1,0 +1,179 @@
+
+route:
+  id: TOKENIZED
+  label: "Tokenized rails (compliance-gated tokenized exposure)"
+
+  stages:
+
+    ONBOARDING:
+      enabled: true
+      time:
+        dist: triangular
+        params: { low: 0.05, mode: 0.25, high: 1.0 }
+      costs:
+        explicit_fixed: 0.0
+        implicit_fixed: 0.0
+      friction:
+        approvals: 1
+        handoffs: 1
+        intermediaries: ["platform"]
+
+    KYC_REVIEW:
+      enabled: true
+      time:
+        dist: triangular
+        params: { low: 12.0, mode: 72.0, high: 240.0 }
+      costs:
+        explicit_fixed: 0.0
+        implicit_fixed: 0.0
+      friction:
+        approvals: 1
+        handoffs: 1
+        intermediaries: ["platform", "compliance_provider"]
+
+    ELIGIBILITY_GATE:
+      enabled: true
+      time:
+        dist: triangular
+        params: { low: 0.5, mode: 4.0, high: 24.0 }
+      costs:
+        explicit_fixed: 0.0
+        implicit_fixed: 0.0
+      friction:
+        approvals: 1
+        handoffs: 1
+        intermediaries: ["platform_admin"]
+      gating:
+        requires_allowlist: true
+        allowlist_pass_probability: 0.97
+
+    ORDER_PLACEMENT:
+      enabled: true
+      time:
+        dist: fixed
+        params: { value: 0.2 }
+      costs:
+        explicit_fixed: 0.0
+        implicit_fixed: 0.0
+      friction:
+        approvals: 0
+        handoffs: 1
+        intermediaries: ["platform_ui"]
+
+    EXECUTION:
+      enabled: true
+      time:
+        dist: fixed
+        params: { value: 0.05 }
+      costs:
+        explicit_fixed: 0.5
+        implicit_fixed: 1.0
+      friction:
+        approvals: 0
+        handoffs: 1
+        intermediaries: ["liquidity_provider"]
+
+    CLEARING_SETTLEMENT:
+      enabled: true
+      time:
+        dist: triangular
+        params: { low: 0.0008, mode: 0.0014, high: 0.22 }
+      costs:
+        explicit_fixed: 0.01
+        implicit_fixed: 0.0
+      friction:
+        approvals: 0
+        handoffs: 0
+        intermediaries: []
+
+    CUSTODY_RECORDING:
+      enabled: true
+      time:
+        dist: triangular
+        params: { low: 0.5, mode: 2.0, high: 8.0 }
+      asset_time_adders_hours:
+        PRIVATE_CREDIT: 1.0
+      costs:
+        explicit_fixed: 0.2
+        implicit_fixed: 0.0
+      friction:
+        approvals: 0
+        handoffs: 1
+        intermediaries: ["custody_agent"]
+
+    SERVICING_REPORTING:
+      enabled: true
+      time:
+        dist: triangular
+        params: { low: 0.1, mode: 0.5, high: 4.0 }
+      asset_time_adders_hours:
+        PRIVATE_CREDIT: 3.0
+      costs:
+        explicit_fixed: 0.3
+        implicit_fixed: 0.0
+      friction:
+        approvals: 0
+        handoffs: 1
+        intermediaries: ["administrator", "attestation_oracle"]
+
+    TRANSFERABILITY:
+      enabled: true
+      time:
+        dist: triangular
+        params: { low: 0.1, mode: 1.0, high: 12.0 }
+      asset_time_adders_hours:
+        PRIVATE_CREDIT: 4.0
+      costs:
+        explicit_fixed: 0.1
+        implicit_fixed: 0.0
+      friction:
+        approvals: 0
+        handoffs: 1
+        intermediaries: ["transfer_agent"]
+      restrictions:
+        transfers_restricted: true
+        transfer_pass_probability: 0.95
+
+    EXIT_INITIATION:
+      enabled: true
+      time:
+        dist: fixed
+        params: { value: 0.2 }
+      costs:
+        explicit_fixed: 0.0
+        implicit_fixed: 0.0
+      friction:
+        approvals: 0
+        handoffs: 1
+        intermediaries: ["platform_ui"]
+
+    REDEMPTION_PROCESSING:
+      enabled: true
+      time:
+        dist: triangular
+        params: { low: 4.0, mode: 24.0, high: 120.0 }
+      costs:
+        explicit_fixed: 0.5
+        implicit_fixed: 0.5
+      friction:
+        approvals: 1
+        handoffs: 2
+        intermediaries: ["issuer_spv", "administrator"]
+      redemption_rules:
+        redemption_hold_probability: 0.03
+        redemption_reject_probability: 0.01
+        hold_delay_hours: 24.0
+        hold_delay_hours_stress: 72.0
+
+    EXCEPTION_HANDLING:
+      enabled: false
+      time:
+        dist: triangular
+        params: { low: 1.0, mode: 6.0, high: 36.0 }
+      costs:
+        explicit_fixed: 0.5
+        implicit_fixed: 0.2
+      friction:
+        approvals: 1
+        handoffs: 1
+        intermediaries: ["operations", "compliance_provider"]

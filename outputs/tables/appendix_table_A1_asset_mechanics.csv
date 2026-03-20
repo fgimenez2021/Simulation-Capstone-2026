@@ -1,0 +1,3 @@
+Config area,Parameter(s),Current value,Status,Source support,Notes
+`config/assets.yaml`,`TBILL_MMF.redemption.window_type / notice_days / settlement_days_to_cash`,`daily / 0 / 1`,`Direct evidence`,Franklin Templeton Trust (2025),Franklin's prospectus supports business-day redeemability and typical next-business-day processing.
+`config/assets.yaml`,`PRIVATE_CREDIT.redemption.window_type / notice_days / settlement_days_to_cash`,`quarterly / 30 / 7`,`Direct evidence`,OneAscent Capital Opportunities Fund (2025),"Prospectus supports quarterly repurchase windows, an approximately 30-day notice period, and payment no more than seven days after the repurchase pricing date."

@@ -1,0 +1,154 @@
+
+risk_events:
+
+  - id: KYC_MANUAL_REVIEW
+    label: "KYC escalates to manual review"
+    trigger_stages: ["KYC_REVIEW"]
+    applicable_routes: ["TRADFI", "TOKENIZED"]
+    base_probability: 0.08
+    impacts:
+      add_time_hours:
+        dist: triangular
+        params: { low: 6.0, mode: 24.0, high: 120.0 }
+      add_explicit_cost: 1.0
+      add_implicit_cost: 0.5
+    flags:
+      blocks_progress: false
+      freezes_exit: false
+
+  - id: KYC_FAILURE
+    label: "KYC failure (cannot proceed)"
+    trigger_stages: ["KYC_REVIEW"]
+    applicable_routes: ["TRADFI", "TOKENIZED"]
+    base_probability: 0.01
+    impacts:
+      add_time_hours:
+        dist: fixed
+        params: { value: 0.0 }
+      add_explicit_cost: 0.0
+      add_implicit_cost: 0.0
+    flags:
+      blocks_progress: true
+      freezes_exit: false
+
+  - id: REDEMPTION_HOLD
+    label: "Redemption placed on hold (extra checks)"
+    trigger_stages: ["REDEMPTION_PROCESSING"]
+    applicable_routes: ["TRADFI", "TOKENIZED"]
+    base_probability: 0.06
+    impacts:
+      add_time_hours:
+        dist: triangular
+        params: { low: 12.0, mode: 72.0, high: 240.0 }
+      add_explicit_cost: 0.5
+      add_implicit_cost: 1.0
+    flags:
+      blocks_progress: false
+      freezes_exit: false
+
+  - id: REDEMPTION_REJECTED
+    label: "Redemption rejected (cannot exit via redemption)"
+    trigger_stages: ["REDEMPTION_PROCESSING"]
+    applicable_routes: ["TRADFI", "TOKENIZED"]
+    base_probability: 0.01
+    impacts:
+      add_time_hours:
+        dist: fixed
+        params: { value: 0.0 }
+      add_explicit_cost: 0.0
+      add_implicit_cost: 0.0
+    flags:
+      blocks_progress: false
+      freezes_exit: true
+
+  - id: SETTLEMENT_FAIL
+    label: "Settlement failure / fail-to-deliver"
+    trigger_stages: ["CLEARING_SETTLEMENT"]
+    applicable_routes: ["TRADFI"]
+    base_probability: 0.03
+    impacts:
+      add_time_hours:
+        dist: triangular
+        params: { low: 24.0, mode: 48.0, high: 72.0 }
+      add_explicit_cost: 0.3
+      add_implicit_cost: 0.5
+    flags:
+      blocks_progress: false
+      freezes_exit: false
+
+  - id: ACATS_COMPLICATION
+    label: "ACATS transfer delayed by data discrepancy or asset incompatibility"
+    trigger_stages: ["TRANSFERABILITY"]
+    applicable_routes: ["TRADFI"]
+    base_probability: 0.05
+    impacts:
+      add_time_hours:
+        dist: triangular
+        params: { low: 24.0, mode: 72.0, high: 168.0 }
+      add_explicit_cost: 0.2
+      add_implicit_cost: 0.3
+    flags:
+      blocks_progress: false
+      freezes_exit: false
+
+  - id: CUSTODY_RECONCILIATION_ERROR
+    label: "Custodian reconciliation error (position mismatch)"
+    trigger_stages: ["CUSTODY_RECORDING"]
+    applicable_routes: ["TRADFI"]
+    base_probability: 0.02
+    impacts:
+      add_time_hours:
+        dist: triangular
+        params: { low: 4.0, mode: 24.0, high: 72.0 }
+      add_explicit_cost: 0.3
+      add_implicit_cost: 0.2
+    flags:
+      blocks_progress: false
+      freezes_exit: false
+
+  - id: ATTESTATION_DELAY
+    label: "Reporting/attestation delay (oracle or on-chain attestation)"
+    trigger_stages: ["SERVICING_REPORTING"]
+    applicable_routes: ["TOKENIZED"]
+    base_probability: 0.05
+    impacts:
+      add_time_hours:
+        dist: triangular
+        params: { low: 2.0, mode: 12.0, high: 72.0 }
+      add_explicit_cost: 0.2
+      add_implicit_cost: 0.2
+    flags:
+      blocks_progress: false
+      freezes_exit: false
+
+  - id: TRANSFER_BLOCKED
+    label: "Secondary transfer blocked by compliance-gated smart contract"
+    trigger_stages: ["TRANSFERABILITY"]
+    applicable_routes: ["TOKENIZED"]
+    base_probability: 0.03
+    impacts:
+      add_time_hours:
+        dist: triangular
+        params: { low: 0.5, mode: 6.0, high: 48.0 }
+      add_explicit_cost: 0.2
+      add_implicit_cost: 0.0
+    flags:
+      blocks_progress: false
+      freezes_exit: false
+    outcomes:
+      transfer_success: false
+
+  - id: GOVERNANCE_PAUSE
+    label: "Platform/governance intervention pauses transfers temporarily"
+    trigger_stages: ["TRANSFERABILITY", "EXIT_INITIATION", "REDEMPTION_PROCESSING"]
+    applicable_routes: ["TOKENIZED"]
+    base_probability: 0.01
+    impacts:
+      add_time_hours:
+        dist: triangular
+        params: { low: 6.0, mode: 48.0, high: 240.0 }
+      add_explicit_cost: 0.3
+      add_implicit_cost: 0.5
+    flags:
+      blocks_progress: false
+      freezes_exit: false

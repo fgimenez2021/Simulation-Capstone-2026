@@ -1,0 +1,5 @@
+Scenario,Asset,Delta time to cash (days),Delta total time (days),Delta mean total cost,Delta completion rate (pp),Delta exit frozen rate (pp)
+Baseline,T-bill / MMF,-4.9,-4.87,-1.28,-1.1,0.8
+Baseline,Private credit,-5.07,-5.07,-1.28,-1.1,0.8
+Stress,T-bill / MMF,-9.11,-8.92,-1.35,-0.6,0.4
+Stress,Private credit,-9.41,-9.22,-1.35,-0.6,0.4

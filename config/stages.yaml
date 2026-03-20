@@ -1,0 +1,49 @@
+
+stages:
+  - id: ONBOARDING
+    label: "Onboarding (account setup / initial intake)"
+    category: "onboarding"
+
+  - id: KYC_REVIEW
+    label: "KYC / Compliance review"
+    category: "compliance"
+
+  - id: ELIGIBILITY_GATE
+    label: "Eligibility / allowlist checks"
+    category: "compliance"
+
+  - id: ORDER_PLACEMENT
+    label: "Order placement"
+    category: "execution"
+
+  - id: EXECUTION
+    label: "Execution"
+    category: "execution"
+
+  - id: CLEARING_SETTLEMENT
+    label: "Clearing and settlement"
+    category: "settlement"
+
+  - id: CUSTODY_RECORDING
+    label: "Custody / recording"
+    category: "custody"
+
+  - id: SERVICING_REPORTING
+    label: "Servicing and reporting"
+    category: "servicing"
+
+  - id: TRANSFERABILITY
+    label: "Transferability / secondary transfer attempt"
+    category: "transfer"
+
+  - id: EXIT_INITIATION
+    label: "Exit initiation (sell or redeem request)"
+    category: "exit"
+
+  - id: REDEMPTION_PROCESSING
+    label: "Redemption processing (ops / settlement-to-cash)"
+    category: "exit"
+
+  - id: EXCEPTION_HANDLING
+    label: "Exception handling (manual review / dispute / holds)"
+    category: "exception"

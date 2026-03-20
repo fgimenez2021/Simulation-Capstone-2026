@@ -1,0 +1,17 @@
+KYC stress setting,Asset,Route,Completion rate (%),Exit frozen rate (%),Median time to cash (days),Median total time (days)
+1,T-bill / MMF,TradFi,97.5,3.0,29.34,28.21
+2,T-bill / MMF,TradFi,97.5,3.0,28.14,27.01
+4,T-bill / MMF,TradFi,97.5,3.0,28.25,27.15
+8,T-bill / MMF,TradFi,97.5,3.0,28.87,27.61
+1,T-bill / MMF,Tokenized,97.0,2.5,20.53,19.18
+2,T-bill / MMF,Tokenized,97.0,2.5,20.38,19.01
+4,T-bill / MMF,Tokenized,97.0,2.5,20.41,19.08
+8,T-bill / MMF,Tokenized,97.0,2.5,20.38,19.01
+1,Private credit,TradFi,97.5,3.0,111.04,103.91
+2,Private credit,TradFi,97.5,3.0,109.84,102.71
+4,Private credit,TradFi,97.5,3.0,109.95,102.85
+8,Private credit,TradFi,97.5,3.0,110.57,103.31
+1,Private credit,Tokenized,97.0,2.5,101.93,94.58
+2,Private credit,Tokenized,97.0,2.5,101.78,94.41
+4,Private credit,Tokenized,97.0,2.5,101.81,94.48
+8,Private credit,Tokenized,97.0,2.5,101.78,94.41

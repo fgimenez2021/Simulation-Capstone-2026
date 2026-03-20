@@ -1,0 +1,175 @@
+
+route:
+  id: TRADFI
+  label: "Traditional finance rails (TradFi)"
+
+  stages:
+
+    ONBOARDING:
+      enabled: true
+      time:
+        dist: triangular
+        params: { low: 2.0, mode: 8.0, high: 24.0 }
+      costs:
+        explicit_fixed: 0.0
+        implicit_fixed: 0.0
+      friction:
+        approvals: 1
+        handoffs: 1
+        intermediaries: ["broker"]
+
+    KYC_REVIEW:
+      enabled: true
+      time:
+        dist: triangular
+        params: { low: 24.0, mode: 72.0, high: 240.0 }
+      costs:
+        explicit_fixed: 0.0
+        implicit_fixed: 0.0
+      friction:
+        approvals: 1
+        handoffs: 2
+        intermediaries: ["broker", "compliance_provider"]
+
+    ELIGIBILITY_GATE:
+      enabled: true
+      time:
+        dist: triangular
+        params: { low: 0.5, mode: 4.0, high: 24.0 }
+      costs:
+        explicit_fixed: 0.0
+        implicit_fixed: 0.0
+      friction:
+        approvals: 1
+        handoffs: 1
+        intermediaries: ["compliance_officer"]
+      gating:
+        requires_allowlist: true
+        allowlist_pass_probability: 0.98
+
+    ORDER_PLACEMENT:
+      enabled: true
+      time:
+        dist: fixed
+        params: { value: 0.25 }
+      costs:
+        explicit_fixed: 0.0
+        implicit_fixed: 0.0
+      friction:
+        approvals: 0
+        handoffs: 1
+        intermediaries: ["broker_platform"]
+
+    EXECUTION:
+      enabled: true
+      time:
+        dist: fixed
+        params: { value: 0.05 }
+      costs:
+        explicit_fixed: 0.0
+        implicit_fixed: 2.0
+      friction:
+        approvals: 0
+        handoffs: 1
+        intermediaries: ["venue"]
+
+    CLEARING_SETTLEMENT:
+      enabled: true
+      time:
+        dist: triangular
+        params: { low: 16.0, mode: 24.0, high: 48.0 }
+      costs:
+        explicit_fixed: 0.5
+        implicit_fixed: 0.5
+      friction:
+        approvals: 0
+        handoffs: 2
+        intermediaries: ["clearing_house", "custodian"]
+
+    CUSTODY_RECORDING:
+      enabled: true
+      time:
+        dist: triangular
+        params: { low: 1.0, mode: 4.0, high: 12.0 }
+      asset_time_adders_hours:
+        PRIVATE_CREDIT: 2.0
+      costs:
+        explicit_fixed: 0.2
+        implicit_fixed: 0.0
+      friction:
+        approvals: 0
+        handoffs: 1
+        intermediaries: ["custodian"]
+
+    SERVICING_REPORTING:
+      enabled: true
+      time:
+        dist: triangular
+        params: { low: 0.2, mode: 1.0, high: 4.0 }
+      asset_time_adders_hours:
+        PRIVATE_CREDIT: 4.0
+      costs:
+        explicit_fixed: 0.2
+        implicit_fixed: 0.0
+      friction:
+        approvals: 0
+        handoffs: 1
+        intermediaries: ["administrator"]
+
+    TRANSFERABILITY:
+      enabled: true
+      time:
+        dist: triangular
+        params: { low: 24.0, mode: 72.0, high: 144.0 }
+      asset_time_adders_hours:
+        PRIVATE_CREDIT: 6.0
+      costs:
+        explicit_fixed: 0.1
+        implicit_fixed: 0.0
+      friction:
+        approvals: 1
+        handoffs: 2
+        intermediaries: ["carrying_broker", "receiving_broker"]
+
+      restrictions:
+        transfers_restricted: true
+        transfer_pass_probability: 0.95
+
+    EXIT_INITIATION:
+      enabled: true
+      time:
+        dist: fixed
+        params: { value: 0.25 }
+      costs:
+        explicit_fixed: 0.0
+        implicit_fixed: 0.0
+      friction:
+        approvals: 0
+        handoffs: 1
+        intermediaries: ["broker_platform"]
+
+    REDEMPTION_PROCESSING:
+      enabled: true
+      time:
+        dist: triangular
+        params: { low: 24.0, mode: 36.0, high: 72.0 }
+      costs:
+        explicit_fixed: 0.5
+        implicit_fixed: 0.5
+      friction:
+        approvals: 0
+        handoffs: 1
+        intermediaries: ["custodian"]
+
+    EXCEPTION_HANDLING:
+      enabled: false
+      time:
+        dist: triangular
+        params: { low: 0.5, mode: 4.0, high: 24.0 }
+      costs:
+        explicit_fixed: 0.3
+        implicit_fixed: 0.1
+      friction:
+        approvals: 1
+        handoffs: 1
+        intermediaries: ["operations"]

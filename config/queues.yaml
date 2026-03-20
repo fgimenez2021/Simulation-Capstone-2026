@@ -1,0 +1,45 @@
+
+queues:
+  kyc_queue:
+    label: "KYC / Compliance review queue"
+
+    servers:
+      baseline: 6
+      stress: 3
+
+    service_time:
+      dist: triangular
+      params: { low: 2.0, mode: 8.0, high: 24.0 }
+    service_time_multipliers:
+      default: 1.0
+      TRADFI: 1.0
+      TOKENIZED: 0.99
+
+    arrivals:
+      model: "poisson_per_day"
+      baseline_rate_per_day: 50
+      stress_rate_per_day: 200
+
+  redemption_queue:
+    label: "Redemption processing queue"
+
+    servers:
+      baseline: 5
+      stress: 2
+
+    service_time:
+      dist: triangular
+      params: { low: 4.0, mode: 16.0, high: 48.0 }
+    service_time_multipliers:
+      default: 1.0
+      TRADFI: 1.0
+      TOKENIZED: 0.985
+
+    arrivals:
+      model: "poisson_per_day"
+      baseline_rate_per_day: 30
+      stress_rate_per_day: 180
+
+queue_simulation_horizon_days:
+  baseline: 5
+  stress: 10

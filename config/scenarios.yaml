@@ -1,0 +1,47 @@
+
+scenarios:
+  - id: BASELINE
+    label: "Baseline (normal operations)"
+    mode: "baseline"
+    seed: 42
+
+    time_multipliers:
+      default: 1.0
+
+    cost_multipliers:
+      default: 1.0
+
+    risk_multipliers:
+      default: 1.0
+
+    queues:
+      enabled: false
+
+    arrivals:
+      onboarding_requests_per_day: 50
+      redemption_requests_per_day: 30
+
+  - id: STRESS
+    label: "Stress / backlog conditions"
+    mode: "stress"
+    seed: 123
+
+    time_multipliers:
+      default: 1.3
+      TRADFI: 1.4
+      TOKENIZED: 1.2
+
+    cost_multipliers:
+      default: 1.05
+
+    risk_multipliers:
+      default: 1.5
+      TRADFI: 1.6
+      TOKENIZED: 1.4
+
+    queues:
+      enabled: true
+
+    arrivals:
+      onboarding_requests_per_day: 200
+      redemption_requests_per_day: 180

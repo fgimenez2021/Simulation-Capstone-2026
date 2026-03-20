@@ -1,0 +1,9 @@
+Scenario,Asset,Route,Completion rate (%),Exit frozen rate (%),Median total time (days),Total time CI95 low,Total time CI95 high,Median time to cash (days),Time-to-cash CI95 low,Time-to-cash CI95 high,Mean explicit cost,Mean implicit cost,Mean total cost
+Baseline,T-bill / MMF,TradFi,97.1,1.4,12.65,12.44,12.92,13.75,13.56,13.99,1.67,3.07,4.74
+Baseline,T-bill / MMF,Tokenized,96.0,2.2,7.78,7.57,7.97,8.86,8.64,9.1,1.83,1.63,3.46
+Baseline,Private credit,TradFi,97.1,1.4,88.15,87.94,88.42,95.25,95.06,95.49,1.67,3.07,4.74
+Baseline,Private credit,Tokenized,96.0,2.2,83.08,82.88,83.28,90.19,89.98,90.43,1.83,1.63,3.46
+Stress,T-bill / MMF,TradFi,95.9,2.4,28.14,27.62,28.68,29.52,29.0,30.02,1.86,3.28,5.14
+Stress,T-bill / MMF,Tokenized,95.3,2.8,19.23,18.86,19.62,20.4,20.07,21.01,2.01,1.78,3.79
+Stress,Private credit,TradFi,95.9,2.4,103.84,103.32,104.38,111.22,110.7,111.72,1.86,3.28,5.14
+Stress,Private credit,Tokenized,95.3,2.8,94.63,94.25,94.99,101.8,101.47,102.41,2.01,1.78,3.79
