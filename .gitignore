@@ -8,17 +8,7 @@ build/
 .pytest_cache/
 .pytest_tmp/
 
-outputs/*
-!outputs/tables/
-!outputs/figures/
-outputs/_test_tmp/
-outputs/runs/
-outputs/stages/
-outputs/tables/*
-outputs/figures/*
-!outputs/tables/thesis_table_*.csv
-!outputs/tables/appendix_table_*.csv
-!outputs/figures/*.png
+outputs/
 outputs_candidate/
 *.ipynb_checkpoints/
 .ipynb_checkpoints/

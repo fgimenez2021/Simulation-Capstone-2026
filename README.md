@@ -32,6 +32,20 @@ Requires **Python 3.10+**.
 pip install -r requirements.txt
 ```
 
+## Submission Note
+
+The submission zip can omit generated artifacts such as `outputs/` and local environment folders such as `.venv/`. On a reviewer machine, install the requirements and rebuild everything locally:
+
+```bash
+python main.py --clean --n 1000 --with-sensitivity --sensitivity-n 200
+```
+
+For a quicker smoke run:
+
+```bash
+python main.py --n 200
+```
+
 ## Running the Model
 
 Run full experiment grid and generate summary tables, thesis tables, and figures:

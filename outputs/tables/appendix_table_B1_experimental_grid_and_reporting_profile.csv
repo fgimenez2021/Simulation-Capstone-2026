@@ -1,9 +1,0 @@
-Scenario,Asset,Route,Reporting investor profile,Qualification required?,Queues enabled?,Time multiplier,Risk multiplier,Cost multiplier,Redemption window,Notice days,Settlement-to-cash days
-Baseline,T-bill / MMF,TradFi,Institutional investor,No,No,1.0,1.0,1.0,daily,0,1
-Baseline,T-bill / MMF,Tokenized,Institutional investor,No,No,1.0,1.0,1.0,daily,0,1
-Baseline,Private credit,TradFi,Qualified institutional investor,Yes,No,1.0,1.0,1.0,quarterly,30,7
-Baseline,Private credit,Tokenized,Qualified institutional investor,Yes,No,1.0,1.0,1.0,quarterly,30,7
-Stress,T-bill / MMF,TradFi,Institutional investor,No,Yes,1.4,1.6,1.05,daily,0,1
-Stress,T-bill / MMF,Tokenized,Institutional investor,No,Yes,1.2,1.4,1.05,daily,0,1
-Stress,Private credit,TradFi,Qualified institutional investor,Yes,Yes,1.4,1.6,1.05,quarterly,30,7
-Stress,Private credit,Tokenized,Qualified institutional investor,Yes,Yes,1.2,1.4,1.05,quarterly,30,7

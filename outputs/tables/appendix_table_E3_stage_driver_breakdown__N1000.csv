@@ -1,9 +1,0 @@
-Scenario,Asset,Route,Clearing and settlement (mean hours),KYC review (mean hours),Onboarding (mean hours),Redemption processing (mean hours),Transferability (mean hours)
-Baseline,T-bill / MMF,TradFi,31.17,117.14,11.45,51.07,84.1
-Baseline,T-bill / MMF,Tokenized,0.07,113.58,0.44,60.22,6.94
-Baseline,Private credit,TradFi,31.17,117.14,11.45,51.07,90.1
-Baseline,Private credit,Tokenized,0.07,113.58,0.44,60.22,10.94
-Stress,T-bill / MMF,TradFi,44.11,279.3,16.0,194.05,118.62
-Stress,T-bill / MMF,Tokenized,0.09,256.05,0.53,184.0,8.51
-Stress,Private credit,TradFi,44.11,279.3,16.0,194.05,127.02
-Stress,Private credit,Tokenized,0.09,256.05,0.53,184.0,13.31

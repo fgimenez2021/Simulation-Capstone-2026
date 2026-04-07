@@ -1,9 +1,0 @@
-Scenario,Asset,Route,Stage rows observed,Gate check/outcome rate per stage row (%),Observed gate markers
-Baseline,T-bill / MMF,TradFi,10761,18.25,"GATE:redemption_ok, GATE:transfer_restricted_checked, GATE_DENIED:allowlist_failed"
-Baseline,T-bill / MMF,Tokenized,10673,18.3,"GATE:redemption_hold_by_rules, GATE:redemption_ok, GATE:redemption_rejected_by_rules, GATE:transfer_restricted_checked, GATE_DENIED:allowlist_failed"
-Baseline,Private credit,TradFi,10761,18.25,"GATE:redemption_ok, GATE:transfer_restricted_checked, GATE_DENIED:allowlist_failed"
-Baseline,Private credit,Tokenized,10673,18.3,"GATE:redemption_hold_by_rules, GATE:redemption_ok, GATE:redemption_rejected_by_rules, GATE:transfer_restricted_checked, GATE_DENIED:allowlist_failed"
-Stress,T-bill / MMF,TradFi,10654,18.22,"GATE:redemption_ok, GATE:transfer_restricted_checked, GATE_DENIED:allowlist_failed"
-Stress,T-bill / MMF,Tokenized,10609,18.27,"GATE:redemption_hold_by_rules, GATE:redemption_ok, GATE:redemption_rejected_by_rules, GATE:transfer_restricted_checked, GATE_DENIED:allowlist_failed"
-Stress,Private credit,TradFi,10654,18.22,"GATE:redemption_ok, GATE:transfer_restricted_checked, GATE_DENIED:allowlist_failed"
-Stress,Private credit,Tokenized,10609,18.27,"GATE:redemption_hold_by_rules, GATE:redemption_ok, GATE:redemption_rejected_by_rules, GATE:transfer_restricted_checked, GATE_DENIED:allowlist_failed"

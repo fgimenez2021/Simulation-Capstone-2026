@@ -20,6 +20,15 @@ ROUTE_PALETTE = {
 }
 
 
+def _display_stage_label(stage_id: str) -> str:
+    pretty = str(stage_id).strip().replace("_", " ").title()
+    pretty = pretty.replace("Kyc", "KYC")
+    words = pretty.split()
+    if len(words) <= 1:
+        return pretty
+    return "\n".join(words)
+
+
 def _combo_order(df: pd.DataFrame) -> list[tuple[str, str]]:
     scenarios = [s for s in SCENARIO_ORDER if s in set(df["scenario_id"].astype(str))]
     scenarios += sorted([s for s in set(df["scenario_id"].astype(str)) if s not in scenarios])
@@ -378,7 +387,8 @@ def _plot_stage_bottleneck_mix(df: pd.DataFrame, figs_dir: Path) -> Path:
     route_order = [r for r in ROUTE_ORDER if r in set(top_stage["route_id"].astype(str))]
     base, positions = _grouped_positions(len(labels), route_order)
 
-    fig, ax = plt.subplots(figsize=(12, 6.6), constrained_layout=True)
+    fig, ax = plt.subplots(figsize=(13.2, 6.8), constrained_layout=True)
+    max_height = 0.0
     for route in route_order:
         y_vals: list[float] = []
         text_vals: list[str] = []
@@ -390,8 +400,10 @@ def _plot_stage_bottleneck_mix(df: pd.DataFrame, figs_dir: Path) -> Path:
                 y_vals.append(np.nan)
                 text_vals.append("")
             else:
-                y_vals.append(float(row["stage_time_share_pct"].iloc[0]))
-                text_vals.append(str(row["stage_id"].iloc[0]))
+                height = float(row["stage_time_share_pct"].iloc[0])
+                y_vals.append(height)
+                text_vals.append(_display_stage_label(str(row["stage_id"].iloc[0])))
+                max_height = max(max_height, height)
 
         bars = ax.bar(
             positions[route],
@@ -407,21 +419,23 @@ def _plot_stage_bottleneck_mix(df: pd.DataFrame, figs_dir: Path) -> Path:
             if txt:
                 ax.text(
                     bar.get_x() + bar.get_width() / 2.0,
-                    bar.get_height() + 0.8,
+                    bar.get_height() + 0.9,
                     txt,
                     ha="center",
                     va="bottom",
-                    fontsize=8.4,
-                    rotation=90,
+                    fontsize=8.1,
+                    rotation=0,
+                    linespacing=0.9,
                     color="#2f3340",
                 )
 
+    ax.set_ylim(0.0, max(60.0, max_height + 12.0))
     ax.set_xticks(base)
     ax.set_xticklabels(labels)
     ax.set_ylabel("Largest Stage Share of Lifecycle Time (%)")
     ax.set_xlabel("Scenario and Asset")
-    ax.set_title("Dominant Bottleneck Stage by Route (stage label shown above each bar)")
-    ax.legend(title="Route", loc="upper right", frameon=False)
+    ax.set_title("Dominant Bottleneck Stage by Route (stage label shown above each bar)", pad=12)
+    ax.legend(title="Route", loc="upper left", bbox_to_anchor=(1.01, 1.0), frameon=False, borderaxespad=0.0)
     _style_axes(ax)
 
     path = figs_dir / "fig_kpi_stage_bottleneck_mix.png"
@@ -452,7 +466,7 @@ def _plot_stage_time_distribution_top4(df: pd.DataFrame, figs_dir: Path) -> Path
     stage_order = top4
     route_order = [r for r in ROUTE_ORDER if r in set(sub["route_id"].astype(str))]
 
-    fig, axes = plt.subplots(2, 2, figsize=(14, 9), constrained_layout=True, sharey=True)
+    fig, axes = plt.subplots(2, 2, figsize=(14, 9.4), constrained_layout=False, sharey=True)
     axes_flat = axes.flatten()
     for ax, stage in zip(axes_flat, stage_order):
         s = sub[sub["stage_id"] == stage].copy()
@@ -487,7 +501,7 @@ def _plot_stage_time_distribution_top4(df: pd.DataFrame, figs_dir: Path) -> Path
         )
 
         ax.set_yscale("log")
-        ax.set_title(f"{stage} (log scale)")
+        ax.set_title(f"{_display_stage_label(stage).replace(chr(10), ' ')} (log scale)", fontsize=10.8, pad=8)
         ax.set_xlabel("Route")
         ax.set_ylabel("Stage Time (hours, log scale)")
         _style_axes(ax)
@@ -497,8 +511,19 @@ def _plot_stage_time_distribution_top4(df: pd.DataFrame, figs_dir: Path) -> Path
 
     handles, labels = axes_flat[0].get_legend_handles_labels()
     if handles:
-        fig.legend(handles[:2], labels[:2], title="Scenario", loc="upper center", ncol=2, frameon=False)
-    fig.suptitle("Stage-Level Time Distributions for Top 4 Bottleneck Stages", y=1.02, fontsize=14)
+        fig.legend(
+            handles[:2],
+            labels[:2],
+            title="Scenario",
+            loc="upper center",
+            bbox_to_anchor=(0.5, 0.955),
+            ncol=2,
+            frameon=False,
+            columnspacing=1.6,
+            handletextpad=0.6,
+        )
+    fig.suptitle("Stage-Level Time Distributions for Top 4 Bottleneck Stages", y=0.992, fontsize=14)
+    fig.tight_layout(rect=[0.0, 0.0, 1.0, 0.84])
 
     path = figs_dir / "fig_kpi_stage_time_distribution_top4.png"
     fig.savefig(path, dpi=320, bbox_inches="tight")

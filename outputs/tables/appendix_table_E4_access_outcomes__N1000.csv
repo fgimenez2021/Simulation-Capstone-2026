@@ -1,9 +1,0 @@
-Scenario,Asset,Route,Onboarding runs,Onboarding success (%),Transfer attempts,Transfer success (%),Redemption attempts,Redemption allowed (%)
-Baseline,T-bill / MMF,TradFi,1000,97.8,971,94.95,971,100.0
-Baseline,T-bill / MMF,Tokenized,1000,96.7,960,93.33,960,98.96
-Baseline,Private credit,TradFi,1000,97.8,971,94.95,971,100.0
-Baseline,Private credit,Tokenized,1000,96.7,960,93.33,960,98.96
-Stress,T-bill / MMF,TradFi,1000,97.7,959,95.31,959,100.0
-Stress,T-bill / MMF,Tokenized,1000,96.8,953,92.13,953,99.16
-Stress,Private credit,TradFi,1000,97.7,959,95.31,959,100.0
-Stress,Private credit,Tokenized,1000,96.8,953,92.13,953,99.16
