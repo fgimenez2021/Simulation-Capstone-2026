@@ -9,6 +9,8 @@ build/
 .pytest_tmp/
 
 outputs/
+!outputs/tables/
+!outputs/stages/
 outputs_candidate/
 *.ipynb_checkpoints/
 .ipynb_checkpoints/

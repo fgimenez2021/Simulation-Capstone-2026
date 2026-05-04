@@ -1,0 +1,5 @@
+scenario_id,asset_id,delta_time_to_cash_days_p50,pct_change_time_to_cash_days_p50,delta_total_time_days_p50,pct_change_total_time_days_p50,delta_total_cost_mean,pct_change_total_cost_mean,delta_completion_rate_pp,delta_exit_frozen_rate_pp,delta_onboarding_success_rate_pp,delta_transfer_success_rate_pp,delta_redemption_allowed_rate_pp,delta_risk_event_rate_per_stage_row_pp
+BASELINE,TBILL_MMF,-4.8988,-35.6174,-4.8717,-38.5059,-1.2801,-27.0183,-1.1,0.8,-1.1,-1.6203,-1.0417,0.2071
+BASELINE,PRIVATE_CREDIT,-5.0655,-5.3179,-5.0701,-5.7516,-1.2801,-27.0183,-1.1,0.8,-1.1,-1.6203,-1.0417,0.2071
+STRESS,TBILL_MMF,-9.1118,-30.8706,-8.915,-31.6758,-1.3464,-26.2014,-0.6,0.4,-0.9,-3.1775,-0.8395,-0.2101
+STRESS,PRIVATE_CREDIT,-9.4118,-8.4626,-9.2184,-8.8771,-1.3464,-26.2014,-0.6,0.4,-0.9,-3.1775,-0.8395,-0.2101

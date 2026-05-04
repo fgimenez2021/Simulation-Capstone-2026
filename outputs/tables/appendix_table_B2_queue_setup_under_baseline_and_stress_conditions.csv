@@ -1,0 +1,5 @@
+Scenario,Queue,Queues enabled?,Requests per day,Servers,Service time (hours),TradFi service multiplier,Tokenized service multiplier,Queue simulation horizon (days)
+Baseline,KYC / compliance review,No,50,6,"(2, 8, 24)",1.0,0.99,5
+Baseline,Redemption processing,No,30,5,"(4, 16, 48)",1.0,0.985,5
+Stress,KYC / compliance review,Yes,200,3,"(2, 8, 24)",1.0,0.99,10
+Stress,Redemption processing,Yes,180,2,"(4, 16, 48)",1.0,0.985,10

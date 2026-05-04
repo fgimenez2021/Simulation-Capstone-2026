@@ -1,0 +1,8 @@
+Item,Value / method,Evidence / location
+Scenario seeds,"Baseline = 42, Stress = 123",`config/scenarios.yaml`
+Deterministic lifecycle seeding,Lifecycle runs use deterministic run-based random seeds.,`sim/engine.py`
+Deterministic queue simulation,Queue wait-time generation uses scenario-specific seeded simulation.,"`sim/queues.py`, `sim/hybrid.py`"
+Raw output export,Per-cell run logs and stage logs are exported as CSVs.,"`outputs/runs/`, `outputs/stages/`"
+Config validation,"Typed config loading enforces distribution, probability, and consistency checks.",`sim/config_loader.py`
+Automated testing,"Pytest covers smoke behavior, output schema, and thesis export regression cases.",`tests/`
+Config-driven reproducibility,A clean rebuild path regenerates outputs from YAML config plus CLI flags.,"`main.py`, `config/`"

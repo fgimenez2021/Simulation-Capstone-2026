@@ -1,0 +1,16 @@
+metric_name,definition,units,direction_when_comparing_tokenized_minus_tradfi
+time_to_cash_days_p50,Median time from start to cash availability,days,lower_better
+total_time_days_p50,Median total lifecycle processing time,days,lower_better
+total_cost_mean,Mean explicit + implicit lifecycle cost,relative cost units,lower_better
+completion_rate,Share of runs completing lifecycle,"rate [0,1]",higher_better
+exit_frozen_rate,Share of runs ending with frozen exit,"rate [0,1]",lower_better
+onboarding_success_rate,Share of runs that clear onboarding-related gates,"rate [0,1]",higher_better
+transfer_success_rate,Share of transfer attempts that succeed,"rate [0,1]",higher_better
+redemption_allowed_rate,Share of redemption attempts marked allowed,"rate [0,1]",higher_better
+risk_event_rate_per_stage_row,Stage-row share containing >=1 risk event,"rate [0,1]",lower_better
+gate_event_rate_per_stage_row,Stage-row share containing >=1 logged gate check/outcome (includes successful checks),"rate [0,1]",context_dependent
+queue_delay_hours_mean_per_run,Mean queue-induced delay injected into lifecycle,hours,lower_better
+risk_delay_hours_mean_per_run,Mean delay caused by risk event time impacts,hours,lower_better
+exception_delay_hours_mean_per_run,Mean delay from exception-handling overhead,hours,lower_better
+gate_delay_hours_mean_per_run,Mean delay caused by deterministic gating rules,hours,lower_better
+delta_*,Tokenized minus TradFi (same scenario and asset),metric-specific,negative_better_for_time_cost_risk_freeze
